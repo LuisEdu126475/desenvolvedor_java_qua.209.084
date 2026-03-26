@@ -26,10 +26,12 @@ public class App {
         veiculo.placa = sc.nextLine();
         System.out.println(" Informe o ano do carro");
         veiculo.ano = sc.nextInt();
-        System.out.println(" Informe a cor do carro");
-        veiculo.cor = sc.nextLine();
+        
 
         //limpeza de buffer
+        sc.nextLine();
+        System.out.println(" A cor do seu carro é:");
+        veiculo.cor = sc.nextLine();
         
 
     // definir os valores dos atributos
