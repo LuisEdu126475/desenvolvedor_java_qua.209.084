@@ -53,13 +53,14 @@ public class App {
             System.out.println(" Informe a altura do triangulo");
             y = sc.nextDouble();
             System.out.println(" A area do triangulo é "+ prof.areaDoTriangulo(x, y));
+            break;
             case "2":
                 System.out.println(" Informe o raio do circulo");
                 r = sc.nextDouble();
                 System.out.println(" Considere o numero de pi como 3,14.");
                 pi = sc.nextDouble();
                 System.out.println(" A área do circulo é "+ prof.equacaoDoCirculo(r, pi));
-
+              break;
                 case"3":
                 System.out.println(" Informe o valor de a");
                 aEquacao = sc.nextDouble();
@@ -79,6 +80,7 @@ public class App {
         
             default:
         }
+        sc.close();
 
 
 

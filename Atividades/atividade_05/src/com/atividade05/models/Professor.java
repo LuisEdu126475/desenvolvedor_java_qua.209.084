@@ -13,7 +13,7 @@ public class Professor {
     public double areaDoTriangulo (double x, double y){
         return x*y/2;
     }
-    public double equacaoDoCirculo( double r, double pi){
+    public double equacaoDoCirculo( double r,  double pi){
         return pi*Math.pow(r,2);
     }
     public double equacaoDoPrimeiroGrau (double xEquacao, double aEquacao, double bEquacao){
