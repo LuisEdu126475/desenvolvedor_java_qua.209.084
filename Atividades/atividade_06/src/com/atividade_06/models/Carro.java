@@ -4,14 +4,10 @@ package com.atividade_06.models;
     //atributos
     private String bagageiro;
 
-    public Carro( String bagageiro){
+    public Carro( String bagageiro , String modelo , String cor , String ano , String placa , String fabricante , String categoria){
+        super(fabricante, modelo, cor, ano, placa, categoria);
         this.bagageiro = bagageiro;
 
-    }
-
-    public Carro(String bagageiro) {
-        super(bagageiro, bagageiro, bagageiro, bagageiro, bagageiro);
-        this.bagageiro = bagageiro;
     }
 
     public String getBagageiro() {

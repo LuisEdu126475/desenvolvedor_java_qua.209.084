@@ -6,14 +6,16 @@ abstract public class Veiculo {
     private String modelo;
     private String cor;
     private String ano;
-    private String placa;
+    private  String placa;
+    private String categoria;
 
-    public Veiculo(String fabricante, String modelo, String cor, String ano, String placa) {
+    public Veiculo(String fabricante, String modelo, String cor, String ano, String placa, String categoria) {
         this.fabricante = fabricante;
         this.modelo = modelo;
         this.cor = cor;
         this.ano = ano;
         this.placa = placa;
+        this.categoria = categoria;
     }
 // métodos de acesso
 
@@ -55,6 +57,12 @@ abstract public class Veiculo {
 
     public void setPlaca(String placa) {
         this.placa = placa;
+    }
+    public String getcategoria(){
+        return this.categoria;
+    }
+    public void setcategoria(){
+        this.categoria = categoria;
     }
 
 }

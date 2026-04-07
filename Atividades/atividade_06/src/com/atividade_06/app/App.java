@@ -19,22 +19,28 @@ public class App {
       // Diferenças entre as classes: carro terá bagageiro, onibus poderá ser leito ou não, e caminhao terá carroceria.
       //ao final, o programa exibirá os dados do veiculo escolhido por ele
       // Note: utilize os 4 pilares da orientação a objetos para codar
-    
-    Scanner sc = new Scanner(System.in);
-    Caminhao caminhao = new Caminhao();
-    Carro carro = new Carro();
-    Onibus onibus = new Onibus();
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    }
 
+     String tipoVeiculo;
+     
+    Scanner sc = new Scanner(System.in);
+   
+
+    System.out.println(" Informe o tipo de veiculo");
+    System.out.println(" A - Moto");
+    System.out.println(" B - Carro");
+    System.out.println(" C - Caminhão");
+    System.out.println(" D - Ônibus");
+    tipoVeiculo = sc.nextLine();
+  
+    switch (tipoVeiculo) {
+      case "A":
+        Moto moto = new Moto(null, null , null , null , null , "A" , null );
+        
+        break;
+    
+      default:
+        break;
+    }
+    
+}
 }
