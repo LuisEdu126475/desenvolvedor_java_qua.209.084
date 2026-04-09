@@ -2,19 +2,22 @@ package com.atividade_06.models;
 
  final public class Carro extends Veiculo{
     //atributos
-    private String bagageiro;
+    private boolean bagageiro;
 
-    public Carro( String bagageiro , String modelo , String cor , String ano , String placa , String fabricante , String categoria){
+    public Carro( boolean bagageiro , String modelo , String cor , String ano , String placa , String fabricante , String categoria){
         super(fabricante, modelo, cor, ano, placa, categoria);
         this.bagageiro = bagageiro;
 
     }
-
-    public String getBagageiro() {
+    public boolean isbagageiro(){
         return this.bagageiro;
     }
 
-    public void setBagageiro(String bagageiro) {
+    public boolean getBagageiro() {
+        return this.bagageiro;
+    }
+
+    public void setBagageiro(boolean bagageiro) {
         this.bagageiro = bagageiro;
     }
 
