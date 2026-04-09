@@ -4,6 +4,7 @@ import com.atividade07.repository.OperacoesConta;
 
 public class Conta implements OperacoesConta {
     private double saldo;
+    private Pessoa titular;
 
     @Override
     public void depositar(double valor) {
@@ -13,7 +14,7 @@ public class Conta implements OperacoesConta {
 
     @Override
     public void sacar(double valor) {
-      saldo =- saldo;
+      saldo =- valor;
     }
 
     @Override
