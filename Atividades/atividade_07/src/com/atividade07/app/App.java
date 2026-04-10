@@ -1,10 +1,121 @@
 package com.atividade07.app;
+
+import com.atividade07.models.Conta;
+import com.atividade07.models.PessoaFisica;
+import com.atividade07.models.Pessoa;
+import com.atividade07.models.ContaPJ;
+import com.atividade07.models.ContaPF;
+import com.atividade07.models.PessoaJuridica;
+
+import java.nio.channels.Pipe.SourceChannel;
+import java.util.Scanner;
 public class App {
     public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+
+        int tipoConta;
+        String opções;
+
+        System.out.println(" === SISTEMA BANCARIO ===");
+        System.out.println(" Escolha o tipo de conta");
+        System.out.println(" 1- PESSOA FISÍCA");
+        System.out.println(" 2- PESSOA JURIDICA");
+        tipoConta = sc.nextInt();
+        sc.nextLine();
+
+        System.out.println(" Informe o e-mail:");
+        String email = sc.nextLine();
+
+        System.out.println(" Informe o numero da conta");
+        String nConta = sc.nextLine();
+
+        System.out.println(" Informe a agência");
+        String nAgencia = sc.nextLine();
+
+        System.out.println(" Informe o saldo inicial");
+        Double saldo = sc.nextDouble();
+
+        sc.nextLine();
         
+        if (tipoConta == 1) {
+            System.out.println(" Informe o seu nome");
+            String nome = sc.nextLine();
+
+            System.out.println(" Informe o numero da conta");
+            String numeroConta = sc.nextLine();
+
+            System.out.println(" Informe a agência");
+            String numeroAgencia = sc.nextLine();
+
+            System.out.println(" Informe o valor do saldo da conta");
+            Double numeroDoSaldo = sc.nextDouble();
+
+            sc.nextLine();
+        }
     }
 }
-//TODO - atividade 07
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// - atividade 07
 //crie um programa de aplicativo de banco: o usuário poderá escolher se 
 //desejar entrar como pessoa fisica ou pessoa juridica, devera informar o 
 // nome, email e cpf (classe PessoaFisica), ou nome fantasia, razao social,

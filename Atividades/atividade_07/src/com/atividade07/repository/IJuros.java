@@ -1,6 +1,6 @@
 package com.atividade07.repository;
 
-public interface Juros {
+public interface IJuros {
   public double calcularTaxa(double valor);
 
 }
