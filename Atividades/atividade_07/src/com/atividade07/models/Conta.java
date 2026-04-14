@@ -39,29 +39,21 @@ public abstract class Conta implements IOperacoesConta {
     }
 
     @Override
+    public void exibirDados() {
+        System.out.println("Número da agência: " + this.nAgencia);
+        System.out.println("Número da conta: " + this.nConta);
+        System.out.println("Saldo: R$ " + this.saldo);
+    }
+
+    @Override
     public double fazerDeposito(double valor) {
-       if( valor>= 0){
-        this.saldo += valor;
-       }
-        return this.saldo;
-       
+        return this.saldo += valor;
     }
 
     @Override
     public double fazerSaque(double valor) {
-      if( valor <= this.saldo){
-        this.saldo -= valor;
-      }
-      return this.saldo;
+        return this.saldo -= valor;
     }
-
-    @Override
-    public void exibirDados() {
-    System.out.println(" Conta:" + this.nConta);
-    System.out.println(" Agencia:" + this.nAgencia);
-    System.out.println(" Saldo" + this.saldo);
-    }
-
     
    
 
