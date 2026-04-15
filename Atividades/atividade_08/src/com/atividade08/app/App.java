@@ -17,7 +17,7 @@ public class App {
             
         }
         else{
-            JOptionPane.showMessageDialog(null, pessoa.getIdade()+ " ,Você é menor de idade");
+            JOptionPane.showMessageDialog(null, pessoa.getIdade()+ " ,Você tem que cresçer mais para usar esse programa");
         }
         
 
@@ -26,9 +26,10 @@ public class App {
             " Nome: " + pessoa.getNome() + 
             " Idade: " + pessoa.getIdade()
         );
-    }
+        
 
 
             
     
+}
 }
