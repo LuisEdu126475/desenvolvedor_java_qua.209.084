@@ -1,0 +1,10 @@
+.bg-pink{
+    background-color: green;
+}
+.bg-verde-oliva{
+    background-image: linear-gradient(to right bottom, red, #020);
+}
+.logo{
+    width: 66px;
+    margin: -4px 0px;
+}
