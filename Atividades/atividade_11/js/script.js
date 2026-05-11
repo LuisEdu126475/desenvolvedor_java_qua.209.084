@@ -4,8 +4,8 @@ form.addEventListener("submit", (event) => {
 
     event.preventDefault()
 
-    let altura = document.querySelector("#altura").value
-    let peso = document.querySelector("#peso").value
+    let altura = document.querySelector("#altura").value.replace(",", ".")
+    let peso = document.querySelector("#peso").value.replace(",", ".")
 
     altura = parseFloat(altura)
     peso = parseFloat(peso)
