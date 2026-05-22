@@ -14,7 +14,7 @@ private static long serialVersionUID = 1L;
 @GeneratedValue(strategy = GenerationType.AUTO)
 private long codigoEndereco;
 
-@Column(nullable = false)
+@Column(nullable = false , length = 10)
 private String cep;
 @Column(nullable = false)
 private String uf;
@@ -26,7 +26,7 @@ private String bairro;
 private String logradouro;
 @Column(nullable = false)
 private String numero;
-@Column(nullable = false)
+@Column(length = 255)
 private String complemento;
 
 
