@@ -1,10 +1,16 @@
 package com.crud.javalanches.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Endereco {
@@ -29,6 +35,8 @@ private String numero;
 @Column(length = 255)
 private String complemento;
 
+@ManyToMany(mappedBy= "enderecos")
+private List<Cliente> cliente = new ArrayList<>();
 
     public Endereco() {
     }
@@ -95,6 +103,14 @@ private String complemento;
 
     public void setComplemento(String complemento) {
         this.complemento = complemento;
+    }
+
+    public List<Cliente> getCliente() {
+        return this.cliente;
+    }
+
+    public void setCliente(List<Cliente> cliente) {
+        this.cliente = cliente;
     }
 
 }
