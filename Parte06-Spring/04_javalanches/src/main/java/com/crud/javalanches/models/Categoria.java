@@ -16,16 +16,13 @@ import jakarta.persistence.GenerationType;
 @Entity
 public class Categoria {
 private static long serialVersionUID = 1L;
-
 @Id
 @GeneratedValue(strategy = GenerationType.AUTO)
-@Column(unique = true , nullable = false)
-private long codigoCliente;
+private long codigoCategoria;
 @Column(unique = true, nullable = false)
 private String nomeCategoria;
 
 @OneToMany(mappedBy = "categoria")
-
 private List<Produto> produtos = new ArrayList<>();
 
 
@@ -33,13 +30,16 @@ private List<Produto> produtos = new ArrayList<>();
     public Categoria() {
     }
 
-    public long getCodigoCliente() {
-        return this.codigoCliente;
+
+
+    public long getCodigoCategoria() {
+        return this.codigoCategoria;
     }
 
-    public void setCodigoCliente(long codigoCliente) {
-        this.codigoCliente = codigoCliente;
+    public void setCodigoCategoria(long codigoCategoria) {
+        this.codigoCategoria = codigoCategoria;
     }
+ 
 
     public String getNomeCategoria() {
         return this.nomeCategoria;
