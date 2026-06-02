@@ -3,8 +3,9 @@ package com.crud.javalanches.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.crud.javalanches.models.Produto;
+import com.crud.javalanches.models.Endereco;
+
 @Repository
-public interface ProdutoRepository extends JpaRepository<Produto, Long> {
+public interface EnderecoRepository extends JpaRepository<Endereco, Long> {
 
 }
