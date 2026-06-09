@@ -1,38 +1,40 @@
 package com.crud.javalanches.models;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 
 @Entity
 public class Produto {
     private static long serialVersionUID = 1L;
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO)
 
-private long codigoProduto;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long codigoProduto;
 
-@Column (unique = true , nullable = false)
-private String nomeProduto;
-@Column(length = 255 , nullable = false)
-private String descricaoProduto;
-@Column(precision = 10 , scale = 2 , nullable = false)
-private BigDecimal precoProduto;
+    @Column(unique = true, nullable = false)
+    private String nomeProduto;
+    @Column(length = 255)
+    private String descricaoProduto;
+    @Column(precision = 10, scale = 2, nullable = false)
+    private BigDecimal precoProduto;
 
-@ManyToOne
-@JoinColumn(name= "categoria_id", nullable = false)
-private Categoria categoria;
+    @ManyToOne
+    @JoinColumn(name = "categoria_id", nullable = false)
+    private Categoria categoria;
 
-@ManyToMany(mappedBy = "produtos")
-private List<Pedido> pedidos = new ArrayList<>();
+    @ManyToMany(mappedBy = "produtos")
+    private List<Pedido> pedidos = new ArrayList<>();
+
     public Produto() {
     }
 
@@ -83,5 +85,5 @@ private List<Pedido> pedidos = new ArrayList<>();
     public void setPedidos(List<Pedido> pedidos) {
         this.pedidos = pedidos;
     }
- 
+
 }

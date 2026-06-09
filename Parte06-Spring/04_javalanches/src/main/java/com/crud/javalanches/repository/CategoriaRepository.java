@@ -5,9 +5,10 @@ import org.springframework.stereotype.Repository;
 
 import com.crud.javalanches.models.Categoria;
 import com.crud.javalanches.models.Cliente;
+import com.crud.javalanches.models.Endereco;
 @Repository
 public interface CategoriaRepository extends JpaRepository<Categoria , Long> {
 
-    void save(Cliente cliente);
+    void save(Endereco endereco);
 
 }

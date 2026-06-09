@@ -5,8 +5,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.annotations.ManyToAny;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,28 +12,30 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Pedido {
     private static long serialVersionUID = 1L;
 
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO)
-private long codigoPedido;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long codigoPedido;
 
-@Column(nullable = false)
-private LocalDateTime dataHoraPedido;
-@Column(precision = 10, scale = 2, nullable = false)
-private BigDecimal valorTotalPedido;
+    @Column(nullable = false)
+    private LocalDateTime dataHoraPedido;
+    @Column(precision = 10, scale = 2, nullable = false)
+    private BigDecimal valorTotalPedido;
 
-@ManyToAny
-@JoinTable(name= "pedido_produto", joinColumns = @JoinColumn(name= "pedido_id"), inverseJoinColumns = @JoinColumn(name="produto_id"))
-private List<Produto> produtos = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(name = "pedido_produto", joinColumns = @JoinColumn(name = "pedido_id"), inverseJoinColumns = @JoinColumn(name = "produto_id"))
+    private List<Produto> produtos = new ArrayList<>();
 
-@ManyToOne
-@JoinColumn(name = "cliente_id", nullable = false)
-private Cliente cliente;
+    @ManyToOne
+    @JoinColumn(name = "cliente_id", nullable = false)
+    private Cliente cliente;
+
     public Pedido() {
     }
 

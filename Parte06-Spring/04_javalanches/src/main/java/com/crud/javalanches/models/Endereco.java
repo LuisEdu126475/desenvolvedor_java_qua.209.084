@@ -3,8 +3,6 @@ package com.crud.javalanches.models;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,29 +12,29 @@ import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Endereco {
-private static long serialVersionUID = 1L;
+    private static long serialVersionUID = 1L;
 
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO)
-private long codigoEndereco;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long codigoEndereco;
 
-@Column(nullable = false , length = 10)
-private String cep;
-@Column(nullable = false)
-private String uf;
-@Column(nullable = false)
-private String cidade;
-@Column(nullable = false)
-private String bairro;
-@Column(nullable = false)
-private String logradouro;
-@Column(nullable = false)
-private String numero;
-@Column(length = 255)
-private String complemento;
+    @Column(nullable = false, length = 10)
+    private String cep;
+    @Column(nullable = false)
+    private String uf;
+    @Column(nullable = false)
+    private String cidade;
+    @Column(nullable = false)
+    private String bairro;
+    @Column(nullable = false)
+    private String logradouro;
+    @Column(nullable = false)
+    private String numero;
+    @Column(length = 255)
+    private String complemento;
 
-@ManyToMany(mappedBy= "enderecos")
-private List<Cliente> cliente = new ArrayList<>();
+    @ManyToMany(mappedBy = "enderecos")
+    private List<Cliente> clientes = new ArrayList<>();
 
     public Endereco() {
     }
@@ -105,12 +103,12 @@ private List<Cliente> cliente = new ArrayList<>();
         this.complemento = complemento;
     }
 
-    public List<Cliente> getCliente() {
-        return this.cliente;
+    public List<Cliente> getClientes() {
+        return this.clientes;
     }
 
-    public void setCliente(List<Cliente> cliente) {
-        this.cliente = cliente;
+    public void setClientes(List<Cliente> clientes) {
+        this.clientes = clientes;
     }
 
 }
