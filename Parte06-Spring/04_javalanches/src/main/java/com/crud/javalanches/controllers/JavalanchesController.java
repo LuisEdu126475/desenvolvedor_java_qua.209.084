@@ -101,6 +101,7 @@ public class JavalanchesController {
         clienteRepository.save(cliente);
         return "cliente_sucesso";
     }
+    // FIXME: postmapping está cadastrando nova categoria, mas não atualizando.
     @GetMapping ("/atualizarCategoria")
     public String atualizarCategoria(@RequestParam("codigoCategoria")Long codigoCategoria, Model model){
         Categoria categoria = categoriaRepository.findById(codigoCategoria).orElse(null);
@@ -108,7 +109,7 @@ public class JavalanchesController {
         return "atualizar_categoria";
     }
     @PostMapping("/atualizarCategoria")
-    public String atualizarCategoria(@Validated Categoria categoria, BindingResult result, RedirectAttributes attributes){
+    public String atualizarCategoria( Categoria categoria){
         categoriaRepository.save(categoria);
         return "atualizar_categoria_sucesso";
     }
