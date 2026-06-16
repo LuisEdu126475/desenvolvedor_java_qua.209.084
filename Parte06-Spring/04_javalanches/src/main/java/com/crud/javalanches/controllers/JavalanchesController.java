@@ -108,6 +108,54 @@ public class JavalanchesController {
         model.addAttribute("categoria", categoria);
         return "atualizar_categoria";
     }
+       @GetMapping("/atualizarEndereco")
+    public String atualizarEndereco(@RequestParam("codigoEndereco") Long codigoEndereco,
+            @RequestParam("codigoCliente") Long codigoCliente, Model model) {
+        Endereco endereco = enderecoRepository.findById(codigoEndereco).orElse(null);
+        Cliente cliente = clienteRepository.findById(codigoCliente).orElse(null);
+
+        if (endereco == null || cliente == null) {
+            return "redirect:/listarClientes";
+        }
+
+        model.addAttribute("endereco", endereco);
+        model.addAttribute("cliente", cliente);
+        return "atualizar_endereco";
+    }
+
+    @PostMapping("/atualizarEndereco")
+    public String atualizarEndereco(Endereco endereco) {
+        enderecoRepository.save(endereco);
+        return "atualizar_endereco_sucesso";
+    }
+
+    @GetMapping("/novoEndereco")
+    public String novoEndereco(@RequestParam("codigoCliente") Long codigoCliente, Model model) {
+        Cliente cliente = clienteRepository.findById(codigoCliente).orElse(null);
+
+        if (cliente == null) {
+            return "redirect:/listarClientes";
+        }
+
+        model.addAttribute("cliente", cliente);
+        return "novo_endereco";
+    }
+
+    @PostMapping("/novoEndereco")
+    public String novoEndereco(Endereco endereco, @RequestParam("codigoCliente") Long codigoCliente) {
+        Cliente cliente = clienteRepository.findById(codigoCliente).orElse(null);
+
+        if (cliente == null) {
+            return "redirect:/listarClientes";
+        }
+
+        cliente.getEnderecos().add(endereco);
+        endereco.getClientes().add(cliente);
+
+        enderecoRepository.save(endereco);
+        clienteRepository.save(cliente);
+        return "endereco_sucesso";
+    }
     @PostMapping("/atualizarCategoria")
     public String atualizarCategoria( Categoria categoria){
         categoriaRepository.save(categoria);
@@ -126,5 +174,20 @@ public class JavalanchesController {
         produto.setCategoria(categoria);
         produtoRepository.save(produto);
         return "atualizar_produto_sucesso";
+    }
+    @GetMapping("/deletarProduto")
+    public String deletarProduto(@RequestParam("codigoProduto") Long codigoProduto){
+        produtoRepository.deleteById(codigoProduto);
+        return "redirect:/listarProdutos";
+    }
+    @GetMapping("/deletarCategoria")
+    public String deletarCategoria(@RequestParam("codigoCategoria") Long codigoCategoria){
+        Categoria categoria = categoriaRepository.findById(codigoCategoria).orElse(null);
+        if (categoria != null) {
+            produtoRepository.deleteAll(categoria.getProdutos());
+            categoriaRepository.deleteById(codigoCategoria);
+            
+        }
+        return "redirect:/listarProdutos";
     }
 }
