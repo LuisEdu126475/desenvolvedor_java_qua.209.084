@@ -1,6 +1,8 @@
 package com.crud.javalanches.controllers;
 
 import java.lang.ProcessBuilder.Redirect;
+import java.util.ArrayList;
+import java.util.List;
 
 // REVIEW: revisar os imports e remover os que não estão sendo usados
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,8 @@ import com.crud.javalanches.repository.CategoriaRepository;
 import com.crud.javalanches.repository.ClienteRepository;
 import com.crud.javalanches.repository.EnderecoRepository;
 import com.crud.javalanches.repository.ProdutoRepository;
+
+import jakarta.transaction.Transactional;
 
 @Controller
 public class JavalanchesController {
@@ -120,7 +124,7 @@ public class JavalanchesController {
 
         model.addAttribute("endereco", endereco);
         model.addAttribute("cliente", cliente);
-        return "atualizar_endereco";
+        return "novo_endereco";
     }
 
     @PostMapping("/atualizarEndereco")
@@ -129,17 +133,22 @@ public class JavalanchesController {
         return "atualizar_endereco_sucesso";
     }
 
-    @GetMapping("/novoEndereco")
-    public String novoEndereco(@RequestParam("codigoCliente") Long codigoCliente, Model model) {
-        Cliente cliente = clienteRepository.findById(codigoCliente).orElse(null);
+ @GetMapping("/novoEndereco")
+public String novoEndereco(@RequestParam("codigoCliente") Long codigoCliente, Model model) {
 
-        if (cliente == null) {
-            return "redirect:/listarClientes";
-        }
+    Cliente cliente = clienteRepository.findById(codigoCliente).orElse(null);
 
-        model.addAttribute("cliente", cliente);
-        return "novo_endereco";
+    if (cliente == null) {
+        return "redirect:/listarClientes";
     }
+
+    model.addAttribute("cliente", cliente);
+
+    // evita erro no Thymeleaf quando a página espera um objeto endereco
+    model.addAttribute("endereco", new Endereco());
+
+    return "novo_endereco";
+}
 
     @PostMapping("/novoEndereco")
     public String novoEndereco(Endereco endereco, @RequestParam("codigoCliente") Long codigoCliente) {
@@ -155,6 +164,55 @@ public class JavalanchesController {
         enderecoRepository.save(endereco);
         clienteRepository.save(cliente);
         return "endereco_sucesso";
+    }
+     @Transactional
+    @GetMapping("/deletarEndereco")
+    public String deletarEndereco(@RequestParam("codigoEndereco") Long codigoEndereco,
+            @RequestParam("codigoCliente") Long codigoCliente) {
+        Cliente cliente = clienteRepository.findById(codigoCliente).orElse(null);
+        Endereco endereco = enderecoRepository.findById(codigoEndereco).orElse(null);
+
+        if (cliente == null || endereco == null) {
+            return "redirect:/listarClientes";
+        }
+
+        cliente.getEnderecos().remove(endereco);
+        endereco.getClientes().remove(cliente);
+        clienteRepository.save(cliente);
+
+        if (endereco.getClientes().isEmpty()) {
+            enderecoRepository.delete(endereco);
+        } else {
+            enderecoRepository.save(endereco);
+        }
+
+        return "redirect:/listarClientes";
+    }
+
+    @Transactional
+    @GetMapping("/deletarCliente")
+    public String deletarCliente(@RequestParam("codigoCliente") Long codigoCliente) {
+        Cliente cliente = clienteRepository.findById(codigoCliente).orElse(null);
+        if (cliente == null) {
+            return "redirect:/listarClientes";
+        }
+
+        List<Endereco> enderecos = new ArrayList<>(cliente.getEnderecos());
+
+        cliente.getEnderecos().clear();
+        clienteRepository.save(cliente);
+        clienteRepository.delete(cliente);
+
+        for (Endereco endereco : enderecos) {
+            endereco.getClientes().remove(cliente);
+            if (endereco.getClientes().isEmpty()) {
+                enderecoRepository.delete(endereco);
+            } else {
+                enderecoRepository.save(endereco);
+            }
+        }
+
+        return "redirect:/listarClientes";
     }
     @PostMapping("/atualizarCategoria")
     public String atualizarCategoria( Categoria categoria){

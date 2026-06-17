@@ -36,7 +36,7 @@
                                     <span th:text="${cliente.nome}"></span>
                                 </button>
 
-                                <a th:href="@{/removerCliente(codigoCliente=${cliente.codigoCliente})}"
+                                <a th:href="@{/deletarCliente(codigoCliente=${cliente.codigoCliente})}"
                                     class="btn btn-outline-danger btn-sm mx-3 flex-shrink-0 d-flex align-items-center justify-content-center"
                                     style="width: 32px; height: 32px; border-radius: 50%;"
                                     onclick="return confirm('Tem certeza que deseja apagar este cliente?');"
